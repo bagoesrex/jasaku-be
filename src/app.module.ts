@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { ExpensesModule } from './expenses/expenses.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TransactionsModule } from './transactions/transactions.module';
     AuthModule,
     CommonModule,
     TransactionsModule,
+    ExpensesModule,
   ],
   controllers: [],
   providers: [],
