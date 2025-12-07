@@ -47,4 +47,21 @@ export class UsersService {
       service_type: user.serviceType,
     };
   }
+
+  async logout(user: User): Promise<UserResponse> {
+    const result = await this.prismaService.user.update({
+      where: {
+        email: user.email,
+      },
+      data: {
+        token: null,
+      },
+    });
+
+    return {
+      email: result.email,
+      name: result.name,
+      service_type: result.serviceType,
+    };
+  }
 }

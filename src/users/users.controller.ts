@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Patch } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Auth } from 'src/common/auth.decorator';
 import { User } from 'generated/prisma/client';
@@ -30,6 +30,16 @@ export class UsersController {
       success: true,
       message: 'User berhasil difetch!',
       data: result,
+    };
+  }
+
+  @Delete('/current')
+  @HttpCode(200)
+  async logout(@Auth() user: User): Promise<ApiResponse<boolean>> {
+    await this.usersService.logout(user);
+    return {
+      success: true,
+      message: 'User berhasil dihapus!',
     };
   }
 }
